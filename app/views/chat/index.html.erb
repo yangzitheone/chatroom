@@ -1,0 +1,15 @@
+<% provide(:title, "Danile") %>
+<p id="notice"><%= notice %></p>
+<h1>Chatrooms</h1>
+  <body>
+  <table>
+  <% @chatrooms.each do |chatroom| %>
+        <tr>
+          <td><%= chatroom.roomname %></td>
+          <td><%= link_to "Join", chatmessage_join_path, method: :post %></td>
+        </tr>
+    <% end %>
+  </table>
+  </body>
+
+<br>

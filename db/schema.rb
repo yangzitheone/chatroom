@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823063743) do
+ActiveRecord::Schema.define(version: 20170823082920) do
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string   "roomname"
+    t.string   "create_user"
+    t.boolean  "pravite_chat"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "room_users", force: :cascade do |t|
+    t.string   "chatroom"
+    t.string   "userid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roommessages", force: :cascade do |t|
+    t.string   "roomname"
+    t.string   "userid"
+    t.string   "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

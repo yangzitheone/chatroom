@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'chat/index'
+
   get 'chatmessage/index'
 
   get 'chatmessage/show'
@@ -7,8 +9,11 @@ Rails.application.routes.draw do
 
   get 'chatmessage/distroy'
 
+  post 'chatmessage/join'
 
-  root  'chatmessage#index'
+  root  'chat#index'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
+

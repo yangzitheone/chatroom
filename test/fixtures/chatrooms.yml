@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  roomname: MyString
+  create_user: MyString
+  pravite_chat: false
+
+two:
+  roomname: MyString
+  create_user: MyString
+  pravite_chat: false
