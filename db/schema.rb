@@ -15,24 +15,29 @@ ActiveRecord::Schema.define(version: 20170823082920) do
   create_table "chatrooms", force: :cascade do |t|
     t.string   "roomname"
     t.string   "create_user"
-    t.boolean  "pravite_chat"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.boolean  "private_chat", default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "room_users", force: :cascade do |t|
-    t.string   "chatroom"
-    t.string   "userid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "chatroom_id"
+    t.integer  "user_id"
+    t.datetime "last_read_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["chatroom_id"], name: "index_room_users_on_chatroom_id"
+    t.index ["user_id"], name: "index_room_users_on_user_id"
   end
 
   create_table "roommessages", force: :cascade do |t|
-    t.string   "roomname"
-    t.string   "userid"
-    t.string   "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "chatroom_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["chatroom_id"], name: "index_roommessages_on_chatroom_id"
+    t.index ["user_id"], name: "index_roommessages_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

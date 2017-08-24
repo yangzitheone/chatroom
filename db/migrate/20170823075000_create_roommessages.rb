@@ -1,10 +1,9 @@
 class CreateRoommessages < ActiveRecord::Migration[5.0]
   def change
     create_table :roommessages do |t|
-      t.string :roomname
-      t.string :userid
-      t.string :message
-
+      t.references :chatrooms, foreign_key: true
+      t.references :user, foreign_key: true
+      t.text :body
       t.timestamps
     end
   end

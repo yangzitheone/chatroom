@@ -1,17 +1,12 @@
 Rails.application.routes.draw do
-  get 'chat/index'
+  resources :chatrooms do
+    resource :room_users
+    resources :roommessages
+  end
 
-  get 'chatmessage/index'
+  resources :direct_messages
+  root 'chatrooms#index'
 
-  get 'chatmessage/show'
-
-  get 'chatmessage/update'
-
-  get 'chatmessage/distroy'
-
-  post 'chatmessage/join'
-
-  root  'chat#index'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,23 @@
+<% provide(:title, "Home") %>
+<h1>Other rooms</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @chatrooms.each do |chatroom| %>
+      <tr>
+        <td><%= chatroom.roomname %></td>
+        <td><%= link_to "Join", chatroom, method: :post %></td>
+      </tr>
+
+  <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'Create Chatroom', new_chatroom_path %>
