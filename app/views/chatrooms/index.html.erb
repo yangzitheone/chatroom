@@ -12,7 +12,7 @@
   <% @chatrooms.each do |chatroom| %>
       <tr>
         <td><%= chatroom.roomname %></td>
-        <td><%= link_to "Join", chatroom, method: :post %></td>
+        <td><%= link_to "Join", edit_chatroom_path(chatroom.id) %></td>
       </tr>
 
   <% end %>

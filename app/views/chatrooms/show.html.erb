@@ -1,0 +1,20 @@
+<% provide(:title, @chatroom.roomname) %>
+<p>
+  <strong>Name:</strong>
+  <%= @chatroom.roomname %>
+</p>
+
+  <% @chatmeaaage.each do |message| %>
+    <div><%=message.body %><div>
+  <% end %>
+
+<form action=<%=edit_chatroom_chatmessage_path(chatroom_id: 1) %>>
+  <div>
+    <textarea name="message"></textarea>
+  </div>
+  <div>
+    <button type="submit" >Send</button>
+  </div>
+
+</form>
+
