@@ -32,8 +32,8 @@
             <li><%= link_to "Login", new_user_session_path %></li>
         <% end %>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
 
 <div class="fluid-container" style="margin-top: 70px">
@@ -50,7 +50,7 @@
           <h5>Users</h5>
           <ul>
             <% (User.all - [current_user]).each do |user| %>
-                <li><%= link_to user.username, "#", data: {behavior: "chatrooms-link", chatroom_id: Chatroom.direct_message_for_users([current_user, user]).id } %></li>
+                <li><%= link_to user.username, private_chat_path(user.id) , data: {behavior: "chatrooms-link"} %></li>
             <% end %>
           </ul>
       <% end %>

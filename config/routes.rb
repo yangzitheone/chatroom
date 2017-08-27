@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :chatmessages
   end
 
-  resources :direct_messages
+  resources :private_chats
   root   'chatrooms#index'
 
   devise_for :users

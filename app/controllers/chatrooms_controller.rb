@@ -8,6 +8,7 @@ class ChatroomsController < ApplicationController
   end
 
   def create
+    p "开始创建聊天室"
      p params
     @chatroom = Chatroom.create(roomname: params.require(:chatroom)[:roomname], create_user:current_user.id)
     p @chatroom.id
@@ -31,7 +32,7 @@ class ChatroomsController < ApplicationController
     @chatroomid = params[:id]
     @chatroom = Chatroom.find(@chatroomid)
     if @chatroom
-    @chatmeaaage = Chatroom.find(@chatroomid).roommessages.order(created_at: :desc)
+    @chatmeaaage = Chatroom.find(@chatroomid).roommessages.order(created_at: :desc).limit(20)
     else
       redirect_to "/"
     end
