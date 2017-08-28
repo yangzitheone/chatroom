@@ -5,16 +5,16 @@
 </p>
 
   <% @chatmeaaage.each do |message| %>
-    <div><%=message.body %><div>
+    <div><%=message.user_id.to_s + "say :" +message.body %><div>
   <% end %>
 
-<form action=<%=edit_chatroom_chatmessage_path(chatroom_id:@chatroom.id) %>>
+<form id="send_msg" action=<%=edit_chatroom_chatmessage_path(chatroom_id: @chatroom.id) %>>
   <div>
-    <textarea name="message"></textarea>
+    <textarea id="body" class="form-control" placeholder="Your reply here..."  rows="3" name="body"></textarea>
+    <input id="user_id" name="user_id"  value=<%=current_user.id %>  type="hidden"/>
   </div>
   <div>
     <button type="submit" >Send</button>
   </div>
-
 </form>
 

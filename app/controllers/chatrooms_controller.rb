@@ -5,10 +5,10 @@ class ChatroomsController < ApplicationController
     # get chatrooms that donot join
     @chatrooms = Chatroom.all
 
+
   end
 
   def create
-    p "开始创建聊天室"
      p params
     @chatroom = Chatroom.create(roomname: params.require(:chatroom)[:roomname], create_user:current_user.id)
     p @chatroom.id
@@ -27,19 +27,30 @@ class ChatroomsController < ApplicationController
     redirect_to "/"
   end
 
+
   def show
     p params
     @chatroomid = params[:id]
     @chatroom = Chatroom.find(@chatroomid)
+    # SendMsgJob.perform(@chatroomid,"nihao a ")
+    gon.push({current_user_id: current_user.id})
+    gon.push({current_room_id: @chatroomid})
     if @chatroom
-    @chatmeaaage = Chatroom.find(@chatroomid).roommessages.order(created_at: :desc).limit(20)
+    @chatmeaaage = Chatroom.find(@chatroomid).roommessages.order(created_at: :asc).limit(20)
     else
       redirect_to "/"
     end
+
   end
 
   def update
 
+    ActionCable.server.broadcast(
+        'room_channel',
+        roomid: @chatroomid,
+        userid: current_user.id,
+        message: 'nihao'
+    )
   end
 
   def destroy

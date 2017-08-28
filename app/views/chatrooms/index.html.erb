@@ -9,7 +9,7 @@
   </thead>
 
   <tbody>
-  <% @chatrooms.each do |chatroom| %>
+  <% (@chatrooms-current_user.chatrooms).each do |chatroom| %>
       <tr>
         <td><%= chatroom.roomname %></td>
         <td><%= link_to "Join", edit_chatroom_path(chatroom.id) %></td>
