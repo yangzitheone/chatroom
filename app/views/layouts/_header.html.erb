@@ -1,9 +1,12 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container" >
-    <nav>
-      <ul class="nav navbar-nav pull-right">
-        <li><%= link_to "Home",   root_path %></li>
-        <li><%= link_to "Log in",  new_user_registration_path  %></li>
-      </ul> </nav>
+<div class="container">
+  <span><%= link_to 'Join a Chatroom', root_path %></span>
+  <div style="float: right">
+    <% if user_signed_in? %>
+    <span style="color: red"> <%= current_user.username %></span>
+        <%= link_to "Loginout", destroy_user_session_path, method: :delete %>
+    <% else %>
+        <%= link_to "Sign Up", new_user_registration_path %>
+        <%= link_to "Login", new_user_session_path %>
+    <% end %>
   </div>
-</header>
+<div>

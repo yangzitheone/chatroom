@@ -6,18 +6,12 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
     disconnected: function() {
         // Called when the subscription has been terminated by the server
     },
-
-
-
     received: function(data) {
         // Called when there's incoming data on the websocket for this channel
-
-
         var msg = '客户端收到消息：' + data['roomid'] + '  ' +data['userid']+'  '+ data['message'] + '\n';
         //简单地打印接收到的信息
         console.log(msg);
-
-     spec(data);
+        updatechatview(data);
 
     }
 });

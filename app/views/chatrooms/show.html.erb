@@ -4,17 +4,22 @@
   <%= @chatroom.roomname %>
 </p>
 
+
+<div id="chatmessages" style="height: 400px;width:600px;overflow: scroll">
   <% @chatmeaaage.each do |message| %>
-    <div><%=message.user_id.to_s + "say :" +message.body %><div>
+      <img class="d-flex mr-3" src="https://robohash.org/4.png?set=set3" width="18" > <h4> <%=User.find(message.user_id).username + " say :" +message.body %></h4></img>
   <% end %>
+</div>
 
 <form id="send_msg" action=<%=edit_chatroom_chatmessage_path(chatroom_id: @chatroom.id) %>>
   <div>
     <textarea id="body" class="form-control" placeholder="Your reply here..."  rows="3" name="body"></textarea>
     <input id="user_id" name="user_id"  value=<%=current_user.id %>  type="hidden"/>
+    <input id="room_id" name="room_id"  value=<%=@chatroom.id %>  type="hidden"/>
   </div>
   <div>
-    <button type="submit" >Send</button>
+    <button class="btn btn-primary" type="submit" id="submit">Reply</button>
   </div>
 </form>
+
 

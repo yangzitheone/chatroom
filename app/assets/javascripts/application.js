@@ -15,11 +15,3 @@
 //= require turbolinks
 //= require_tree .
 
-
-function spec(data)
-{
-    var msgcomment=document.getElementsByName("send_msg")
-    // if(data['roomid']==gon.current_room_id&&data['userid'!=gon.current_user_id])
-    location.reload();
-    console.log("这里是chat.js");
-}

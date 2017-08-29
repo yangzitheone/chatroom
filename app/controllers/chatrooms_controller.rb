@@ -23,7 +23,9 @@ class ChatroomsController < ApplicationController
 
   def edit
     p params
+    if !Chatroom.find(params[:id]).private_chat
     RoomUser.create(chatroom_id:params[:id],user_id:current_user.id,last_read_at:Time.zone.now)
+    end
     redirect_to "/"
   end
 
@@ -33,27 +35,14 @@ class ChatroomsController < ApplicationController
     @chatroomid = params[:id]
     @chatroom = Chatroom.find(@chatroomid)
     # SendMsgJob.perform(@chatroomid,"nihao a ")
-    gon.push({current_user_id: current_user.id})
-    gon.push({current_room_id: @chatroomid})
     if @chatroom
-    @chatmeaaage = Chatroom.find(@chatroomid).roommessages.order(created_at: :asc).limit(20)
+    @chatmeaaage = Chatroom.find(@chatroomid).roommessages.order(created_at: :desc).limit(10).reverse
+    current_user.room_users.where(chatroom_id: @chatroomid).update(last_read_at:Time.zone.now)
     else
       redirect_to "/"
     end
 
   end
 
-  def update
-
-    ActionCable.server.broadcast(
-        'room_channel',
-        roomid: @chatroomid,
-        userid: current_user.id,
-        message: 'nihao'
-    )
-  end
-
-  def destroy
-  end
 
 end
