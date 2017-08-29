@@ -3,10 +3,9 @@ function updatechatview(data)
     var msgcomment=document.getElementsByName("send_msg")
      if(data['roomid']==($("#room_id").val())&&data['userid']!=($("#user_id").val()))
     // location.reload();
-    $("#chatmessages").append("<img src=\'https://robohash.org/4.png?set=set3\' width=\'18\' />"+"<span>"+data['username']+" say :"+data['message']+"</span><br>")
-    moveToBottom();
+    $("#chatmessages").append("<img src=\'https://robohash.org/4.png?set=set3\' width=\'18\' />"+"<span>"+data['username']+" say :"+data['message']+"</span><br>");
     $(`#${data.roomid}`).attr("src","https://robohash.org/4.png?set=set4");
-     console.log($("#room_id").val());
+    moveToBottom();
 
 }
 $(window).on('load',function() {
@@ -14,5 +13,5 @@ $(window).on('load',function() {
 });
 
 function moveToBottom() {
-      $("#chatmessages").scrollTop($("#chatmessages")[0].scrollHeight)
+      // $("#chatmessages").scrollTop($("#chatmessages")[0].scrollHeight)
 }

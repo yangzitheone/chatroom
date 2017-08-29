@@ -7,7 +7,7 @@
 
 <div id="chatmessages" style="height: 400px;width:600px;overflow: scroll">
   <% @chatmeaaage.each do |message| %>
-      <img class="d-flex mr-3" src="https://robohash.org/4.png?set=set3" width="18" > <h4> <%=User.find(message.user_id).username + " say :" +message.body %></h4></img>
+      <img  src="https://robohash.org/4.png?set=set3" width="18" > <span><h4> <%=User.find(message.user_id).username + " say :" +message.body %></h4></span></img>
   <% end %>
 </div>
 
