@@ -27,13 +27,13 @@
 
       </div>
       <div id="users">
-          <h4>Users</h4>
+          <h4>Private friends</h4>
           <ul>
-            <% (User.all - [current_user]).each do |user| %>
+            <% current_user.chatrooms.get_private_chatrooms.each do |privatechat| %>
                 <li>
                   <a href="#" class="media active-message">
                     <div class="media-body">
-                      <img id="<%=user.id%>" class="d-flex mr-3" src="https://robohash.org/4.png?set=set3" width="25" /><strong><%= link_to user.username, private_chat_path(user.id)%></strong><br/>
+                      <img id="<%=privatechat.id%>" class="d-flex mr-3" src="https://robohash.org/4.png?set=set3" width="25" /><strong><%= link_to privatechat.roomname, privatechat%></strong><br/>
                     </div>
                   </a>
                 </li>
