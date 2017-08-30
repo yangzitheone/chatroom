@@ -2,7 +2,7 @@ class ChatroomsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @chatrooms = Chatroom.all
+    @chatrooms = Chatroom.where(private_chat: false)
 
   end
 
@@ -34,11 +34,13 @@ class ChatroomsController < ApplicationController
     if @chatroom
        @chatmeaaage = Chatroom.find(@chatroomid).roommessages.order(created_at: :desc).limit(10).reverse
        current_user.room_users.where(chatroom_id: @chatroomid).update(last_read_at:Time.zone.now)
-    else
-       redirect_to "/"
+      # users=Chatroom.
+      #  if @chatroom.private_chat
+      #    @to_user=RoomUser.find_by_sql("select * from room_users where ")
+
+       render "/chatrooms/show"
     end
 
   end
-
-
 end
+
